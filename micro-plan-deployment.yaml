@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: micro-plan
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: micro-plan
+  template:
+    metadata:
+      labels:
+        app: micro-plan
+    spec:
+      containers:
+      - name: micro-plan
+        image: jsalomia/micro-plan:v1
+        ports:
+        - containerPort: 8082

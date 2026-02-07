@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: micro-clientes
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: micro-clientes
+  template:
+    metadata:
+      labels:
+        app: micro-clientes
+    spec:
+      containers:
+      - name: micro-clientes
+        image: jsalomia/micro-clientes:v1
+        ports:
+        - containerPort: 8081

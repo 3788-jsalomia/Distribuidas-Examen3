@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: micro-poliza
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: micro-poliza
+  template:
+    metadata:
+      labels:
+        app: micro-poliza
+    spec:
+      containers:
+      - name: micro-poliza
+        image: jsalomia/micro-poliza:v1
+        ports:
+        - containerPort: 8083
