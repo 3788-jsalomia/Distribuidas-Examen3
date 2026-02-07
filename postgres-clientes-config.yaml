@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-clientes-config
+  namespace: seguros
+data:
+  POSTGRES_DB: clientes_db
+  POSTGRES_USER: clientes_user
+  POSTGRES_PASSWORD: clientes_pass

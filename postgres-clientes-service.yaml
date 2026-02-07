@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-clientes
+  namespace: seguros
+spec:
+  selector:
+    app: postgres-clientes
+  ports:
+    - port: 5432
+      targetPort: 5432

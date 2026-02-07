@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-planseguro
+  namespace: seguros
+spec:
+  selector:
+    app: postgres-planseguro
+  ports:
+    - port: 5432
+      targetPort: 5432

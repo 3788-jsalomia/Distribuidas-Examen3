@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-planseguro-config
+  namespace: seguros
+data:
+  POSTGRES_DB: planseguro_db
+  POSTGRES_USER: planseguro_user
+  POSTGRES_PASSWORD: planseguro_pass

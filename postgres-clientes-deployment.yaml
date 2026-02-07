@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-clientes
+  namespace: seguros
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres-clientes
+  template:
+    metadata:
+      labels:
+        app: postgres-clientes
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:16
+          ports:
+            - containerPort: 5432
+          envFrom:
+            - configMapRef:
+                name: postgres-clientes-config

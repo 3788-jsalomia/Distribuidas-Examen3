@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: micro-poliza
+  namespace: seguros
 spec:
   replicas: 1
   selector:
