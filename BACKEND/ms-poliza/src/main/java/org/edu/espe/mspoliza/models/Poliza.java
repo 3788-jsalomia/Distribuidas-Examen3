@@ -1,10 +1,9 @@
 package org.edu.espe.mspoliza.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
+@Entity
+@Table(name = "polizas")
 public class Poliza {
 
     @Id
