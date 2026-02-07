@@ -37,19 +37,22 @@ kubectl get namespaces
 ### PostgreSQL – Clientes
 
 ```bash
-kubectl apply -f k8s/postgres-clientes.yaml
+kubectl apply -f postgres-clientes-deployment.yaml
+kubectl apply -f postgres-clientes-service.yaml
 ```
 
 ### PostgreSQL – Plan Seguro
 
 ```bash
-kubectl apply -f k8s/postgres-planseguro.yaml
+kubectl apply -f postgres-planseguro-deployment.yaml
+kubectl apply -f postgres-planseguro-service.yaml
 ```
 
 ### MySQL – Póliza
 
 ```bash
-kubectl apply -f k8s/mysql.yaml
+kubectl apply -f mysql-deployment.yaml
+kubectl apply -f service-mysql.yaml
 ```
 
 Verificar:
@@ -68,21 +71,35 @@ Desde la raíz de cada microservicio:
 
 ```bash
 mvn clean package -DskipTests
-docker build -t micro-clientes:latest .
-docker build -t micro-plan:latest .
-docker build -t micro-poliza:latest .
+docker build -t micro-clientes:v1 .
+docker build -t micro-plan:v1 .
+docker build -t micro-poliza:v1 .
 ```
 
-📌 En Docker Desktop no es necesario hacer `docker push`.
+📌 Las imagenes estan cargadas en docker hub de los microservicios y frontEnd
 
+```bash
+MS:
+https://hub.docker.com/repository/docker/jsalomia/micro-clientes/general
+https://hub.docker.com/repository/docker/jsalomia/micro-plan/general
+https://hub.docker.com/repository/docker/jsalomia/micro-poliza/general
+FRONT END:
+https://hub.docker.com/repository/docker/jsalomia/frontend-seguros/general
+
+```
 ---
 
 ## 4️⃣ Desplegar los microservicios
 
 ```bash
-kubectl apply -f k8s/micro-clientes.yaml
-kubectl apply -f k8s/micro-plan.yaml
-kubectl apply -f k8s/micro-poliza.yaml
+kubectl apply -f micro-clientes-deployment.yaml
+kubectl apply -f micro-plan-deployment.yaml
+kubectl apply -f micro-poliza-deployment.yaml
+
+Para crear el servicio de cada ms:
+kubectl expose deployment micro-clientes --port=8081 --type=LoadBalancer -n seguros
+kubectl expose deployment micro-plan --port=8082 --type=LoadBalancer -n seguros
+kubectl expose deployment micro-poliza --port=8083 --type=LoadBalancer -n seguros
 ```
 
 Verificar:
@@ -97,7 +114,8 @@ kubectl get svc -n seguros
 ## 5️⃣ Desplegar el frontend
 
 ```bash
-kubectl apply -f k8s/frontend.yaml
+kubectl apply -f deployment–frontend.yaml
+kubectl apply -f Service–Frontend.yaml
 ```
 
 Obtener el puerto:
