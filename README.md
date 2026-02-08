@@ -1,17 +1,17 @@
-# 🚀 Despliegue de Microservicios con Kubernetes
+# Despliegue de Microservicios con Kubernetes
 
 Este proyecto contiene un sistema basado en microservicios desplegado en **Kubernetes**, compuesto por:
 
-* 🧩 Microservicios backend (Spring Boot)
+*  Microservicios backend (Spring Boot)
 
   * ms-clientes (PostgreSQL)
   * ms-planseguro (PostgreSQL)
   * ms-poliza (MySQL)
-* 🗄️ Bases de datos
+*  Bases de datos
 
   * PostgreSQL (clientes y planseguro)
   * MySQL 8 (poliza)
-* 🌐 Frontend
+*  Frontend
 
 Todo se ejecuta dentro del **namespace `seguros`**.
 
@@ -39,6 +39,7 @@ kubectl get namespaces
 ```bash
 kubectl apply -f postgres-clientes-deployment.yaml
 kubectl apply -f postgres-clientes-service.yaml
+kubectl apply -f postgres-clientes-config.yaml
 ```
 
 ### PostgreSQL – Plan Seguro
@@ -46,6 +47,7 @@ kubectl apply -f postgres-clientes-service.yaml
 ```bash
 kubectl apply -f postgres-planseguro-deployment.yaml
 kubectl apply -f postgres-planseguro-service.yaml
+kubectl apply -f postgres-planseguro-config.yaml
 ```
 
 ### MySQL – Póliza
@@ -71,9 +73,13 @@ Desde la raíz de cada microservicio:
 
 ```bash
 mvn clean package -DskipTests
-docker build -t micro-clientes:v1 .
-docker build -t micro-plan:v1 .
-docker build -t micro-poliza:v1 .
+docker build -t jsalomia/micro-clientes:v1 .
+docker build -t jsalomia/micro-plan:v1 .
+docker build -t jsalomia/micro-poliza:v1 .
+
+FronEnd
+npm run build
+docker build -t jsalomia/frontend-seguros:latest .
 ```
 
 📌 Las imagenes estan cargadas en docker hub de los microservicios y frontEnd
@@ -116,6 +122,7 @@ kubectl get svc -n seguros
 ```bash
 kubectl apply -f deployment–frontend.yaml
 kubectl apply -f Service–Frontend.yaml
+kubectl port-forward svc/frontend 8080:80 -n seguros
 ```
 
 Obtener el puerto:
