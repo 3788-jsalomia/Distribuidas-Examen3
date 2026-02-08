@@ -116,6 +116,7 @@ kubectl get svc -n seguros
 ```bash
 kubectl apply -f deployment–frontend.yaml
 kubectl apply -f Service–Frontend.yaml
+kubectl port-forward svc/frontend 8080:80 -n seguros
 ```
 
 Obtener el puerto:
