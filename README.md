@@ -1,17 +1,17 @@
-# 🚀 Despliegue de Microservicios con Kubernetes
+# Despliegue de Microservicios con Kubernetes
 
 Este proyecto contiene un sistema basado en microservicios desplegado en **Kubernetes**, compuesto por:
 
-* 🧩 Microservicios backend (Spring Boot)
+*  Microservicios backend (Spring Boot)
 
   * ms-clientes (PostgreSQL)
   * ms-planseguro (PostgreSQL)
   * ms-poliza (MySQL)
-* 🗄️ Bases de datos
+*  Bases de datos
 
   * PostgreSQL (clientes y planseguro)
   * MySQL 8 (poliza)
-* 🌐 Frontend
+*  Frontend
 
 Todo se ejecuta dentro del **namespace `seguros`**.
 
