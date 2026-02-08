@@ -39,6 +39,7 @@ kubectl get namespaces
 ```bash
 kubectl apply -f postgres-clientes-deployment.yaml
 kubectl apply -f postgres-clientes-service.yaml
+kubectl apply -f postgres-clientes-config.yaml
 ```
 
 ### PostgreSQL – Plan Seguro
@@ -46,6 +47,7 @@ kubectl apply -f postgres-clientes-service.yaml
 ```bash
 kubectl apply -f postgres-planseguro-deployment.yaml
 kubectl apply -f postgres-planseguro-service.yaml
+kubectl apply -f postgres-planseguro-config.yaml
 ```
 
 ### MySQL – Póliza
