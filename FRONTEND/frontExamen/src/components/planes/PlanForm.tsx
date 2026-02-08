@@ -24,8 +24,8 @@ export default function PlanForm({ onSave }: PlanFormProps) {
         <option>AUTO</option>
         <option>SALUD</option>
       </select>
-      <input name="primaBase" type="number" onChange={handleChange} />
-      <input name="coberturaMax" type="number" onChange={handleChange} />
+      <input name="primaBase" type="number" placeholder="primaBase" onChange={handleChange} />
+      <input name="coberturaMax" type="number" placeholder="coberturaMax" onChange={handleChange} />
       <button onClick={() => onSave(plan)}>Guardar</button>
     </div>
   );

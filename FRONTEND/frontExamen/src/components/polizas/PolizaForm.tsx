@@ -1,32 +1,81 @@
 import { useState } from "react";
 
+interface Poliza {
+  numeroPoliza: number;
+  fechaInicio: string;
+  fechaFin: string;
+  primaMensual: number;
+  estado: boolean;
+}
+
 interface PolizaFormProps {
-  onSave: (poliza: any) => void;
+  onSave: (poliza: Poliza) => void;
 }
 
 export default function PolizaForm({ onSave }: PolizaFormProps) {
-  const [poliza, setPoliza] = useState({
-    numeroPoliza: "",
+  const [poliza, setPoliza] = useState<Poliza>({
+    numeroPoliza: 0,
     fechaInicio: "",
     fechaFin: "",
     primaMensual: 0,
-    estado: "ACTIVA",
-    clienteId: "",
-    planSeguroId: ""
+    estado: true
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPoliza({ ...poliza, [e.target.name]: e.target.value });
+    const { name, value, type, checked } = e.target;
+
+    setPoliza({
+      ...poliza,
+      [name]:
+        type === "number"
+          ? Number(value)
+          : type === "checkbox"
+            ? checked
+            : value
+    });
   };
 
   return (
     <div>
-      <input name="numeroPoliza" placeholder="Número póliza" onChange={handleChange} />
-      <input name="fechaInicio" type="date" onChange={handleChange} />
-      <input name="fechaFin" type="date" onChange={handleChange} />
-      <input name="clienteId" placeholder="Cliente ID" onChange={handleChange} />
-      <input name="planSeguroId" placeholder="Plan ID" onChange={handleChange} />
-      <button onClick={() => onSave(poliza)}>Emitir</button>
+      <input
+        name="numeroPoliza"
+        type="number"
+        placeholder="Número póliza"
+        onChange={handleChange}
+      />
+
+      <input
+        name="fechaInicio"
+        type="date"
+        onChange={handleChange}
+      />
+
+      <input
+        name="fechaFin"
+        type="date"
+        onChange={handleChange}
+      />
+
+      <input
+        name="primaMensual"
+        type="number"
+        placeholder="Prima mensual"
+        onChange={handleChange}
+      />
+
+      <label>
+        Activa
+        <input
+          name="estado"
+          type="checkbox"
+          checked={poliza.estado}
+          onChange={handleChange}
+        />
+      </label>
+
+      <button onClick={() => onSave(poliza)}>
+        Emitir
+      </button>
     </div>
   );
 }
