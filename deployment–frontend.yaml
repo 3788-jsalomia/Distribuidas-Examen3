@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: jsalomia/frontend-seguros:latest
+          image: jsalomia/frontend-seguros:1.1
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 5173
