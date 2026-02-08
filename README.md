@@ -73,9 +73,13 @@ Desde la raíz de cada microservicio:
 
 ```bash
 mvn clean package -DskipTests
-docker build -t micro-clientes:v1 .
-docker build -t micro-plan:v1 .
-docker build -t micro-poliza:v1 .
+docker build -t jsalomia/micro-clientes:v1 .
+docker build -t jsalomia/micro-plan:v1 .
+docker build -t jsalomia/micro-poliza:v1 .
+
+FronEnd
+npm run build
+docker build -t jsalomia/frontend-seguros:latest .
 ```
 
 📌 Las imagenes estan cargadas en docker hub de los microservicios y frontEnd
