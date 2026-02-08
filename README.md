@@ -79,7 +79,7 @@ docker build -t jsalomia/micro-poliza:v1 .
 
 FronEnd
 npm run build
-docker build -t jsalomia/frontend-seguros:latest .
+docker build -t jsalomia/frontend-seguros:1.1 .
 ```
 
 📌 Las imagenes estan cargadas en docker hub de los microservicios y frontEnd
